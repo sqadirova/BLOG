@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Blog.Models.Model.Blogs>
+
+@using Blog.Helper
+
+@{
+    Layout = null;
+}
+
+<h3 class="heading">Ən çox oxunanlar</h3>
+<div class="post-entry-sidebar">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="/BlogPosts/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogId">
+                    <img src="@item.FotoURL" alt="Image placeholder" class="mr-4">
+                    <div class="text">
+                        <h4>@item.Baslik</h4>
+                        <div class="post-meta">
+                            <span class="mr-2"> @item.Tarih </span> &bullet;
+                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        }
+
+
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

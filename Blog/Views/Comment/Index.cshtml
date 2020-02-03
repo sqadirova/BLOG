@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Blog.Models.Model.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable(
+        {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Azerbaijan.json"
+            }
+        });
+
+    });
+</script>
+
+
+
+<h2>Şərhlər</h2>
+
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Blogs.Baslik)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.AdSoyad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blogs.Baslik)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdSoyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Icerik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarih)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Onay)
+                </td>
+                <td>
+                    @Html.ActionLink("Yenilə", "Edit", new { id = item.YorumId }) |
+                    @Html.ActionLink("Ətraflı", "Details", new { id = item.YorumId }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.YorumId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

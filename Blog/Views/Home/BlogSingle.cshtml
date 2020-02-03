@@ -1,0 +1,196 @@
+﻿@model  Blog.Models.Model.Blogs
+@{
+    ViewBag.Title = "S-BLOG - " + Model.Baslik;
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<section class="site-section py-lg">
+    <div class="container">
+
+        <div class="row blog-entries">
+            <div class="col-md-12 col-lg-8 main-content">
+                <h1 class="mb-4">@Model.Baslik</h1>
+                <div class="post-meta">
+                    <span class="category">@Model.Category.KategoriAd</span>
+                    <span class="mr-2">@Model.Tarih</span> &bullet;
+                    <span class="ml-2"><span class="fa fa-comments"></span> @Model.Comments.Count()</span>
+                </div>
+                <div class="post-content-body">
+                    <div class="row mb-5">
+                        <div class="col-md-12 mb-4 element-animate">
+                            <img src="@Model.FotoURL" alt="Image placeholder" class="img-fluid">
+                        </div>
+                    </div>
+                    <p>
+                        @Html.Raw(Model.Icerik)
+                    </p>
+                </div>
+
+                <div class="pt-5">
+                    <p>Kateqoriya:  <a href="#">@Model.Category.KategoriAd</a>  Teqlər: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+                </div>
+
+
+                <div class="pt-5">
+                    <h3 class="mb-5">@Model.Comments.Count(x=>x.Onay==true) Şərhlər</h3>
+                    <ul class="comment-list">
+                        @foreach (var item in Model.Comments.OrderByDescending(x=>x.YorumId).Where(x=>x.Onay==true))
+	                     {
+                        <li class="comment">
+                            <div class="comment-body">
+                                <h3>@item.AdSoyad</h3>
+                                <div class="meta">@item.Tarih</div>
+                                <p>@Html.Raw(item.Icerik)</p>
+                            </div>
+                        </li>
+	                     }
+                        
+                    </ul>
+                    <!-- END comment-list -->
+
+                    <div class="comment-form-wrap pt-5">
+                        <h3 class="mb-5">Şərhinizi əlavə edin</h3>
+                        <form action="#" class="p-5 bg-light">
+                            <div class="form-group">
+                                <label for="name">Adınız Soyadınız *</label>
+                                <input type="text" class="form-control" id="adsoyad" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Tarix</label>
+                                <input type="datetime" class="form-control" id="tarih" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" class="form-control" id="email" required size="20">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Şərhiniz *</label>
+                                <textarea name="" id="icerik" cols="30" rows="10" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Göndər" id="gonder" class="btn btn-primary">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- END main-content -->
+
+
+            <div class="col-md-12 col-lg-4 sidebar">
+                <div class="sidebar-box search-form-wrap">
+                    <form action="#" class="search-form">
+                        <div class="form-group">
+                            <span class="icon fa fa-search"></span>
+                            <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                        </div>
+                    </form>
+                </div>
+                <!-- END sidebar-box -->
+                <div class="sidebar-box">
+                    @{
+                        Html.RenderAction("Biopartial", "Home");
+                    }
+                </div>
+                <!-- END sidebar-box -->
+                <div class="sidebar-box">
+                    @{
+                        Html.RenderAction("PopularPostPartial", "Home");
+                    }
+                </div>
+                <!-- END sidebar-box -->
+
+                <div class="sidebar-box">
+                    @{
+                        Html.RenderAction("BlogCategoryPartial", "Home");
+                    }
+                </div>
+                <!-- END sidebar-box -->
+
+                <div class="sidebar-box">
+                    @{
+                        Html.RenderAction("TagsPartial", "Home");
+                    }
+                </div>
+            </div>
+            <!-- END sidebar -->
+
+        </div>
+    </div>
+
+
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mb-3 ">Son Postlar</h2>
+            </div>
+        </div>
+        <div class="row">
+            @*<div class="col-md-6 col-lg-4">
+                    <a href="#" class="a-block d-flex align-items-center height-md" style="background-image: url('images/img_2.jpg'); ">
+                        <div class="text">
+                            <div class="post-meta">
+                                <span class="category">Lifestyle</span>
+                                <span class="mr-2">March 15, 2018 </span> &bullet;
+                                <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                            </div>
+                            <h3>There’s a Cool New Way for Men to Wear Socks and Sandals</h3>
+                        </div>
+                    </a>
+                </div>*@
+            @{
+                Html.RenderAction("LastBlogsPartial", "Home");
+            }
+
+        </div>
+    </div>
+
+
+</section>
+<!-- END section -->
+
+<!-- Oxunma arttirmaq ucun script ve ona lazim olan .js fayllar -(bu fayllarsiz ishlemir) -->
+@*<script src="~/Scripts/jquery-2.2.4.min.js"></script>*@
+<script src="~/Content/SiteLayout/js/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "/Home/OxunmaArttir/",
+            data: { id: @Model.BlogId}
+
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#gonder").click(function () {
+            var adsoyadi = $("#adsoyad").val();
+            var emaili = $("#email").val();
+            var tarihi = $("#tarih").val();
+            var yorum = $("#icerik").val();
+            //var useridsi=$("#userid").val();
+            $.ajax({
+                url: "/Home/PostComment/",
+                data: { adsoyad: adsoyadi, email: emaili, tarih: tarihi, icerik: yorum, blogid:@Model.BlogId},
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    alert("Şərhiniz əlavə edildi, yoxlanıldıqdan sonra yayınlanacaqdır!")
+                }
+            });
+        });
+    })
+</script>
+<!-- end script -->

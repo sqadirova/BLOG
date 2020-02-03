@@ -1,0 +1,92 @@
+﻿@model Blog.Models.Model.Blogs
+
+@{
+    ViewBag.Title = "Sil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<script type="text/javascript" language="javascript">
+
+        $(document).ready(function() {
+            $("#delete").click(function() {
+                return window.confirm("Do you really want to delete the user?");
+            });
+        }
+    )
+</script>*@
+
+<h2>Sil</h2>
+
+<h3>Bu Blogu silmək istədiyinizə əminsiniz?</h3>
+<div>
+    <h4>Blogs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.KategoriAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.KategoriAd)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Icerik)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.FotoURL)
+        </dt>
+
+        <dd>
+            <img src="@Model.FotoURL" width="200" height="200" />
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Oxunma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oxunma)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Geri Dön", "Index")
+        </div>
+    }
+</div>

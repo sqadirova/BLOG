@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Blog.Models.Model.Category>
+@using Blog.Helper
+
+
+<h3 class="heading">Kateqoriyalar</h3>
+<ul class="categories">
+    @foreach (var item in Model)
+    {
+        <li>
+          <a href="/BlogPosts/@SeoHelper.ToSeoUrl(item.KategoriAd).ToLower()/@item.KategoriId">
+            @item.KategoriAd <span>(@item.Blogss.Count())</span>
+          </a>
+        </li>
+
+    }
+
+</ul>

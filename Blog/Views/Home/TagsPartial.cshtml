@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Blog.Models.Model.Tag>
+
+@{
+    Layout = null;
+}
+
+<h3 class="heading">Teqlər</h3>
+<ul class="tags">
+    @foreach (var item in Model)
+    {
+        <li><a href="#">@item.EtiketAdi</a></li>
+
+    }
+
+</ul>
+
+

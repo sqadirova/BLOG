@@ -1,0 +1,151 @@
+﻿@model Blog.Models.Model.User
+
+@{
+    ViewBag.Title = "Signup";
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Qeydiyyat Formu</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Content/colorlib-regform-8/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Content/colorlib-regform-8/css/style.css">
+    
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="post" id="signup-form" class="signup-form" action="/Admin/Signup/" enctype="multipart/form-data" >
+                        <h2 class="form-title">Yeni Hesab Yarat</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="UserName" id="UserName" placeholder="İstifadəçi adınız" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="Email" id="Email" placeholder="Emailiniz" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-input" name="Sifre" id="Sifre" placeholder="Şifrəniz" />
+                            <span toggle="#Sifre" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="AdSoyad" id="AdSoyad" placeholder="Adınız və Soyadınız" />
+                        </div>
+                        <div class="form-group">
+                            <input type="file" accept=".jpg,.jpeg,.png" class="form-input" name="FotoURL" id="FotoURL" placeholder="Şəklinizi daxil edin" />
+                        </div>
+
+                        @*<div class="form-group">
+            <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Şifrəni təkrar edin" />
+        </div>*@
+                        @*<div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                        </div>*@
+                        <div class="form-group">
+                            <input type="submit" class="form-submit" value="Qeydiyyatdan keç" />
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Artiq hesabınız var ? <a href="/Admin/Login/" class="loginhere-link">Daxil ol</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="~/Content/colorlib-regform-8/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/colorlib-regform-8/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+
+
+
+
+
+
+@*<h2>Qeydiyyat Formu</h2>
+
+    @using (Html.BeginForm("Signup","Admin",FormMethod.Post,new {enctype="multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>User</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sifre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AdSoyad, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AdSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AdSoyad, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FotoURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                       <input type="file" name="FotoURL" accept=".jpg,.jpeg,.png" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.FotoURL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.YetkiId, "YetkiId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("YetkiId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.YetkiId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Qeydiyyatdan keç" class="btn btn-default" />
+        </div>
+    </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Geri Dön", "Login", "Admin")
+    </div>
+*@

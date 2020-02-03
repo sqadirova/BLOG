@@ -1,0 +1,106 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Blog.Helper
+
+@model IPagedList<Blog.Models.Model.Blogs>
+
+    @{
+        ViewBag.Title = "S-BLOG - BLOG POSTS";
+        Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    }
+
+
+    <section class="site-section">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h2 class="mb-4">Bütün Bloglar</h2>
+                </div>
+            </div>
+            <div class="row blog-entries">
+                <div class="col-md-12 col-lg-8 main-content">
+                    <div class="row mb-5 mt-5">
+                        <div class="col-md-12">
+
+                            @foreach (var item in Model)
+                            {
+                                <div class="post-entry-horzontal">
+                                    <a href="/BlogPosts/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogId">
+                                        <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(@item.FotoURL);"></div>
+                                        <span class="text">
+                                            <div class="post-meta">
+                                                <span class="category">@item.Category.KategoriAd</span>
+                                                <span class="mr-2">@item.Tarih </span> &bullet;
+                                                <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                                            </div>
+                                            <h2>@item.Baslik</h2>
+                                        </span>
+                                    </a>
+                                </div>
+
+                            }
+
+                            <!-- END post -->
+
+
+                        </div>
+                    </div>
+                    <div id="pagination">
+                        @Html.PagedListPager(Model, page => Url.Action("AllBlogs", new { page }), PagedListRenderOptions.Classic)
+                    </div>
+                </div>
+                <!-- END main-content -->
+
+                <div class="col-md-12 col-lg-4 sidebar">
+                    <div class="sidebar-box search-form-wrap">
+                        <form action="#" class="search-form">
+                            <div class="form-group">
+                                <span class="icon fa fa-search"></span>
+                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("Biopartial", "Home");
+                        }
+                    </div>
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("PopularPostPartial", "Home");
+                        }
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("BlogCategoryPartial", "Home");
+                        }
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("TagsPartial", "Home");
+                        }
+                    </div>
+                </div>
+                <!-- END sidebar -->
+
+            </div>
+            </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Blog Admin Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/AdminLayout/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="~/Content/AdminLayout/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="~/Content/AdminLayout/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content/AdminLayout/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="~/Content/AdminLayout/css/style.css" rel="stylesheet">
+    <link href="~/Content/AdminLayout/css/style-responsive.css" rel="stylesheet" />
+
+
+</head>
+<body class="login-img3-body">
+    <div class="container">
+        <form class="login-form" method="post" action="/Admin/Login/">
+            <div class="login-wrap">
+                <p class="login-img"><i class="icon_lock_alt"></i></p>
+
+                @if (Session["userId"] == null)
+                {
+                    <p class="alert">@ViewBag.Warning</p>
+                }
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                    <input type="text" class="form-control" name="Email" placeholder="Email" autofocus>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input type="password" class="form-control" name="Sifre" placeholder="Sifre">
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+
+                
+
+                <label class="checkbox"> 
+                    <span class="pull-left"> <a href="/Admin/Signup/">Qeydiyyatdan keç</a></span>
+                    <span class="pull-right"> <a href="/Admin/ForGotPassword/"> Şifrəmi unuttum?</a></span>
+                </label>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

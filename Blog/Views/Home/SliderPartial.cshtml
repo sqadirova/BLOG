@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Blog.Models.Model.Slider>
+
+@{
+    Layout = null;
+}
+
+    <div class="owl-carousel owl-theme home-slider">
+
+        @foreach (var item in Model)
+        {
+            <div>
+                <a href="#" class="a-block d-flex align-items-center height-lg" style="background-image: url('@item.FotoURL'); ">
+                    <div class="text half-to-full">
+                        @*<div class="post-meta">
+                            <span class="category">@item.Category.KategoriAd</span>
+                            <span class="mr-2">@item.Tarih </span> &bullet;
+                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                        </div>*@
+                        <h1 style="color: white;">@item.Basliq</h1>
+                        @*<p>@item.Icerik</p>*@
+                    </div>
+                </a>
+            </div>
+        }
+
+
+
+    </div>
+
+
+

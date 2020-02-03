@@ -1,0 +1,74 @@
+﻿@model Blog.Models.Model.User
+
+@{
+    ViewBag.Title = "UsersDelete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Sil</h2>
+
+<h3>Bu Blogu silmək istədiyinizə əminsiniz?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sifre)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.Yetki)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Role.Yetki)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FotoURL)
+        </dt>
+        <dd>
+            <img src=@Model.FotoURL width="100" height="100" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "UsersList")
+        </div>
+    }
+</div>

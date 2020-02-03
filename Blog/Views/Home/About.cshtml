@@ -1,0 +1,86 @@
+﻿@model Blog.Models.Model.About
+
+@{
+    ViewBag.Title = "Haqqımda";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+    <section class="site-section">
+        <div class="container">
+
+            <div class="row blog-entries">
+                <div class="col-md-12 col-lg-8 main-content">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="mb-4">Salam! Mən Qədirova Siddiqə</h1>
+                            <p class="mb-5"><img src="@Model.FotoURL" alt="Image placeholder" class="img-fluid"></p>
+                            <p>
+                                @Html.Raw(Model.Aciqlama)
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mb-5 mt-5">
+                        <div class="col-md-12 mb-5">
+                            <h2>Son Blog Yazıları</h2>
+                        </div>
+                        <div class="col-md-12">
+                            @{ 
+                                Html.RenderAction("BlogPostsPartial", "Home");
+                            }
+
+                        </div>
+                    </div>
+
+                    
+
+
+
+                </div>
+
+                <!-- END main-content -->
+
+                <div class="col-md-12 col-lg-4 sidebar">
+                    <div class="sidebar-box search-form-wrap">
+                        <form action="#" class="search-form">
+                            <div class="form-group">
+                                <span class="icon fa fa-search"></span>
+                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("Biopartial", "Home");
+                        }
+                    </div>
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("PopularPostPartial", "Home");
+                        }
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("BlogCategoryPartial", "Home");
+                        }
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <div class="sidebar-box">
+                        @{
+                            Html.RenderAction("TagsPartial", "Home");
+                        }
+                    </div>
+                </div>
+                <!-- END sidebar -->
+
+            </div>
+        </div>
+    </section>

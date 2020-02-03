@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Blog.Models.Model.Category>
+@using Blog.Helper
+
+@*<li class="nav-item dropdown">*@
+    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kateqoriyalar</a>
+    <div class="dropdown-menu" aria-labelledby="dropdown04">
+        @foreach (var item in Model)
+        {
+            <a class="dropdown-item" href="/BlogPosts/@SeoHelper.ToSeoUrl(item.KategoriAd).ToLower()/@item.KategoriId">
+                @item.KategoriAd
+           </a>
+
+        }
+
+        @*<a class="dropdown-item" href="category.html">Africa</a>
+        <a class="dropdown-item" href="category.html">South America</a>*@
+    </div>
+
+@*</li>*@

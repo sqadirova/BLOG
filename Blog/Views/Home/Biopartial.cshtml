@@ -1,0 +1,20 @@
+﻿@model Blog.Models.Model.About
+
+@{
+    Layout = null;
+}
+
+    <div class="bio text-center">
+        <img src="@Model.FotoURL" alt="Image Placeholder" class="img-fluid">
+        <div class="bio-body">
+            <h2>Qədirova Siddiqə</h2>
+            <p>@Html.Raw(Model.Aciqlama.Substring(0,150))</p>
+            <p><a href="/Haqqimda" class="btn btn-primary btn-sm">Daha ətraflı...</a></p>
+            <p class="social">
+                <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
+                <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
+                <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
+                <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
+            </p>
+        </div>
+    </div>

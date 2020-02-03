@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Blog.Models.Model.Slider>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<script type="text/javascript" language="javascript">
+
+            $(document).ready(function() {
+                $("#delete").click(function() {
+                    return window.confirm("Do you really want to delete the user?");
+                });
+            }
+        )
+    </script>*@
+
+<h2>Index</h2>
+
+<p>
+    <a href="/Slider/Create/" class="btn btn-default">Yeni yarat</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Basliq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FotoURL)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Basliq)
+            </td>
+            <td>
+                <img src="@item.FotoURL" width="150" height="70" />
+            </td>
+            <td>
+                @Html.ActionLink("Yenilə", "Edit", new { id = item.SliderId }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.SliderId })
+
+                @*<a href="/Slider/Delete" id="delete">Sil</a>*@
+            </td>
+        </tr>
+    }
+
+</table>
